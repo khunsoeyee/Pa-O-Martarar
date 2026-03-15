@@ -1,0 +1,138 @@
+၀၃.၁၅ ညနေ ၄:၀၇
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မာႏတြာႏကျမ်ꩻ - Digital Book</title>
+    <style>
+        body {
+            font-family: 'Pyidaungsu', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .book-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .page-content {
+            padding: 20px;
+            min-height: 400px;
+        }
+        .page-image {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+            display: none; /* ပုံမရှိလျှင် ဖျောက်ထားမည် */
+        }
+        .text-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: #eee;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+        .page-number {
+            align-self: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>မာႏတြာႏကျမ်ꩻ</h2>
+
+    <div class="book-container">
+        <div id="book-page" class="page-content">
+            <img id="page-img" src="" alt="Page Image" class="page-image">
+            <div id="page-text" class="text-content"></div>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" onclick="changePage(-1)">နောက်သို့</button>
+            <span class="page-number" id="pageNum">၁ / ၁၂</span>
+            <button id="nextBtn" onclick="changePage(1)">ရှေ့သို့</button>
+        </div>
+    </div>
+
+    <script>
+        // စာမျက်နှာ ၁၂ မျက်နှာအတွက် အချက်အလက်များ
+        const pages = [
+            { img: "page1.jpg", text: "၁။ မာႏတြာႏကျမ်ꩻ အစ - ဂါထာတော်များ..." },
+            { img: "page2.jpg", text: "၂။ ဒုတိယစာမျက်နှာမှ စာသားများ..." },
+            { img: "page3.jpg", text: "၃။ တတိယစာမျက်နှာ..." },
+            { img: "page4.jpg", text: "၄။ စတုတ္ထစာမျက်နှာ..." },
+            { img: "page5.jpg", text: "၅။ ပဥ္စမစာမျက်နှာ..." },
+            { img: "page6.jpg", text: "၆။ ဆဋ္ဌမစာမျက်နှာ..." },
+            { img: "page7.jpg", text: "၇။ သတ္တမစာမျက်နှာ..." },
+            { img: "page8.jpg", text: "၈။ အဋ္ဌမစာမျက်နှာ..." },
+            { img: "page9.jpg", text: "၉။ နဝမစာမျက်နှာ..." },
+            { img: "page10.jpg", text: "၁၀။ ဒသမစာမျက်နှာ..." },
+            { img: "page11.jpg", text: "၁၁။ ဧကာဒသမစာမျက်နှာ..." },
+            { img: "page12.jpg", text: "၁၂။ ဒွါဒသမစာမျက်နှာ (အဆုံး)..." }
+        ];
+
+        let currentIndex = 0;
+
+        function updatePage() {
+            const imgElement = document.getElementById('page-img');
+            const textElement = document.getElementById('page-text');
+            const numElement = document.getElementById('pageNum');
+
+            // Update Image
+            if(pages[currentIndex].img) {
+                imgElement.src = pages[currentIndex].img;
+                imgElement.style.display = "block";
+            } else {
+                imgElement.style.display = "none";
+            }
+
+            // Update Text & Page Number
+            textElement.innerText = pages[currentIndex].text;
+            numElement.innerText = `${currentIndex + 1} / ${pages.length}`;
+
+            // Button Control
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === pages.length - 1;
+        }
+
+        function changePage(step) {
+            currentIndex += step;
+            updatePage();
+            window.scrollTo(0,0); // စာမျက်နှာပြောင်းရင် အပေါ်ဆုံးပြန်ရောက်အောင်
+        }
+
+        // ပထမဆုံးစာမျက်နှာကို စတင်ပြသခြင်း
+        updatePage();
+    </script>
+
+</body>
+</html>
+
