@@ -168,15 +168,9 @@
             const textElement = document.getElementById('page-text');
             const numElement = document.getElementById('pageNum');
 
-            if(pages[currentIndex].img) {
-                imgElement.src = pages[currentIndex].img;
-                imgElement.style.display = "block";
-            } else {
-                imgElement.style.display = "none";
-            }
-
+            imgElement.src = pages[currentIndex].img || "";
             textElement.innerText = pages[currentIndex].text;
-            numElement.innerText = `${currentIndex + 1} / ${pages.length}`;
+            numElement.innerText = (currentIndex + 1) + " / " + pages.length;
 
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === pages.length - 1;
