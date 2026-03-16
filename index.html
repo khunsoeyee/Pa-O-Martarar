@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="my">
-<head> <link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
+<head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#007bff">
-<link rel="apple-touch-icon" href="page1.jpg">
+    <meta name="theme-color" content="#007bff">
+    <link rel="apple-touch-icon" href="page1.jpg">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,22 +58,35 @@
         .controls {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 15px;
             background: #f8f9fa;
             border-top: 1px solid #eee;
         }
         button {
-            padding: 10px 25px;
+            padding: 8px 15px;
             border: none;
             background-color: #007bff;
             color: white;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 0.9rem;
         }
         button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
-        .page-number { align-self: center; font-weight: bold; color: #7f8c8d; }
         
+        /* စာမျက်နှာရွေးတဲ့ Dropdown Style */
+        #pageSelect {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Padauk', sans-serif;
+            font-size: 0.9rem;
+            background-color: white;
+            color: #333;
+            outline: none;
+        }
+
         .ad-container {
             text-align: center;
             margin: 10px 0;
@@ -110,7 +121,10 @@
 
         <div class="controls">
             <button id="prevBtn" onclick="changePage(-1)">နောက်သို့</button>
-            <span class="page-number" id="pageNum"></span>
+            
+            <select id="pageSelect" onchange="jumpToPage()">
+                </select>
+
             <button id="nextBtn" onclick="changePage(1)">ရှေ့သို့</button>
         </div>
     </div>
@@ -158,7 +172,7 @@
             },
             { 
                 img: "page8.jpg", 
-                text: `၈။ လူꩻရွုတ်ယို အစူတပင်နဝ်ꩻအဝ်ႏခွူမ်ခါꩻ\nလိုꩻပေႏတဲင် မဲ့အဝ်ႏထွားတောႏလိုꩻပေႏ \nအစူတပင်နဝ်ꩻအဝ်ႏယွိုင်ႏ မာꩻနုဲင်းအီႏတွဲႏလိုꩻပေႏသွူ။\n\nလိုꩻပေႏနဝ်ꩻလွူးဖွါꩻလင်ꩻထွူတဲင် \nမိဉ်ႏလꩻ ၈နီꩻ၊၈လာ၊ ၈နေင်ႏအကို\nထဲစ်ꩻစွဉ်ႏပဋိသန္ဓေႏကိုသူꩻကာႏ ကအဝ်ႏအုံပွေါတီဒါႏ\nခေမာဂီရိလူꩻသူꩻလူꩻဆောမ်ꩻမော့ꩻအံႏတဲ့နော။\nအဝ်ႏဆꩻတွို့ꩻထင်ꩻဖဲ့ꩻ လွဉ်ซောမ်ꩻအံႏတဲ့။\n\n၈။ ဆာပွုံႏလက္ခဏာႏ -\nခေ့ꩻလေနီꩻနာꩻ ယာႏလျားတသေႏ မဲ့တစွူန်းတဝ်း\nမဲ့တဗေင်ႏတဝ်း ၊ ထာꩻငွိုးဒွုန်ဗော့ဗဲ့ ၊ ရူꩻရာꩻ\nကျံꩻထံꩻ ၊ ဓာတ်ဆီႏတသွင်ႏတဝ်း\nဒေါ့ꩻထာꩻပဒိုႏ ဖြောင်းဖြေꩻဒူထွူႏဒါႏနော။\n\n၈။ လိုမ်ꩻလာꩻနယ်ꩻ -\nငပပ်ꩻဝန်ႏကို ရဲဉ်ꩻသော့ꩻဒဲဉ် သော့ꩻပါဟူဖေါင်း \nမေႏတိဉ်ꩻနီလီး ၊ တံႏခွဉ်ႏနီလီး ဖြစ်ꩻပါနံႏသာႏထီတဲင်\nဝွေꩻကလွူးဖွါꩻအခိန်ႏ လွေꩻပသာဖေႏ\nဆꩻတွို့ꩻထင်ꩻအရပ်ကိုနော။` 
+                text: `၈။ လူꩻရွုတ်ယို အစူတပင်နဝ်ꩻအဝ်ႏခွူမ်ခါꩻ\nလိုꩻပေႏတဲင် မဲ့အဝ်ႏထွားတောႏလိုꩻပေႏ \nအစူတပင်နဝ်ꩻအဝ်ႏယွိုင်ႏ မာꩻနုဲင်းအီႏတွဲႏလိုꩻပေႏသွူ။\n\nလိုꩻပေႏနဝ်ꩻလွူးဖွါꩻလင်ꩻထွူတဲင် \nမိဉ်ႏလꩻ ၈နီꩻ၊၈လာ၊ ၈နေင်ႏအကို\nထဲစ်ꩻစွဉ်ႏပဋိသန္ဓေႏကိုသူꩻကာႏ ကအဝ်ႏအုံပွေါတီဒါႏ\nခေမာဂီရိလူꩻသူꩻလူꩻဆောမ်ꩻမော့ꩻအံႏတဲ့နော။\nအဝ်ႏဆꩻတွို့ꩻထင်ꩻဖဲ့ꩻ လွဉ်ဆောမ်ꩻအံႏတဲ့။\n\n၈။ ဆာပွုံႏလက္ခဏာႏ -\nခေ့ꩻလေနီꩻနာꩻ ယာႏလျားတသေႏ မဲ့တစွူန်းတဝ်း\nမဲ့တဗေင်ႏတဝ်း ၊ ထာꩻငွိုးဒွုန်ဗော့ဗဲ့ ၊ ရူꩻရာꩻ\nကျံꩻထံꩻ ၊ ဓာတ်ဆီႏတသွင်ႏတဝ်း\nဒေါ့ꩻထာꩻပဒိုႏ ဖြောင်းဖြေꩻဒူထွူႏဒါႏနော။\n\n၈။ လိုမ်ꩻလာꩻနယ်ꩻ -\nငပပ်ꩻဝန်ႏကို ရဲဉ်ꩻသော့ꩻဒဲဉ် သော့ꩻပါဟူဖေါင်း \nမေႏတိဉ်ꩻနီလီး ၊ တံႏခွဉ်ႏနီလီး ဖြစ်ꩻပါနံႏသာႏထီတဲင်\nဝွေꩻကလွူးဖွါꩻအခိန်ႏ လွေꩻပသာဖေႏ\nဆꩻတွို့ꩻထင်ꩻအရပ်ကိုနော။` 
             },
             { 
                 img: "page9.jpg", 
@@ -184,10 +198,29 @@
 
         let currentIndex = 0;
 
+        // စာမျက်နှာရွေးစရာ Menu ကို Setup လုပ်ခြင်း
+        function setupMenu() {
+            const select = document.getElementById('pageSelect');
+            pages.forEach((_, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.text = "စာမျက်နှာ " + (index + 1);
+                select.appendChild(option);
+            });
+        }
+
+        // ရွေးချယ်လိုက်သော စာမျက်နှာသို့ တန်းသွားခြင်း
+        function jumpToPage() {
+            const select = document.getElementById('pageSelect');
+            currentIndex = parseInt(select.value);
+            updatePage();
+            window.scrollTo(0, 0);
+        }
+
         function updatePage() {
             const imgElement = document.getElementById('page-img');
             const textElement = document.getElementById('page-text');
-            const numElement = document.getElementById('pageNum');
+            const selectElement = document.getElementById('pageSelect');
 
             if (pages[currentIndex].img) {
                 imgElement.src = pages[currentIndex].img;
@@ -197,7 +230,9 @@
             }
 
             textElement.innerText = pages[currentIndex].text;
-            numElement.innerText = (currentIndex + 1) + " / " + pages.length;
+            
+            // Dropdown Menu ရဲ့ တန်ဖိုးကို လက်ရှိ စာမျက်နှာနံပါတ်နဲ့ ကိုက်ညီအောင် ပြောင်းခြင်း
+            selectElement.value = currentIndex;
 
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === pages.length - 1;
@@ -209,6 +244,8 @@
             window.scrollTo(0, 0);
         }
 
+        // App စစချင်းမှာ Menu ကို အရင်ဖန်တီးပြီးမှ စာမျက်နှာပြမည်
+        setupMenu();
         updatePage();
     </script>
 </body>
