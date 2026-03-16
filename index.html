@@ -5,20 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>မာႏတြာႏကျမ်ꩻ - Digital Book</title>
     
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="manifest" href="manifest.json">
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('Service Worker Registered'))
-            .catch(err => console.log('Service Worker Error', err));
-        });
-      }
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Pyidaungsu&display=swap" rel="stylesheet">
 
     <style>
@@ -41,6 +27,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
         }
         .page-content {
             padding: 15px;
@@ -51,7 +38,6 @@
             height: auto;
             border-radius: 8px;
             margin-bottom: 20px;
-            border: 1px solid #eee;
             display: block;
         }
         .text-content {
@@ -60,7 +46,6 @@
             color: #333;
             text-align: left;
             white-space: pre-wrap;
-            word-wrap: break-word;
         }
         .controls {
             display: flex;
@@ -78,15 +63,42 @@
             cursor: pointer;
             font-weight: bold;
         }
-        button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        button:disabled { background-color: #bdc3c7; }
         .page-number { align-self: center; font-weight: bold; color: #7f8c8d; }
-        footer { margin-top: 20px; text-align: center; padding-bottom: 20px; }
-        footer a { color: #7f8c8d; text-decoration: none; font-size: 0.9rem; }
+        
+        /* ကြော်ငြာနေရာ သတ်မှတ်ချက် */
+        .ad-container {
+            text-align: center;
+            margin: 15px 0;
+            min-height: 50px; /* ကြော်ငြာမတက်ခင် နေရာလွတ်ချန်ထားရန် */
+        }
+        
+        footer { 
+            width: 100%;
+            text-align: center; 
+            padding: 20px 0;
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        footer a { color: #007bff; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <h2>မာႏတြာႏကျမ်ꩻ</h2>
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'bbfb6192df62c5edfd427d60974d99b1',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/bbfb6192df62c5edfd427d60974d99b1/invoke.js"></script>
+    </div>
 
     <div class="book-container">
         <div id="book-page" class="page-content">
@@ -101,8 +113,21 @@
         </div>
     </div>
 
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'bbfb6192df62c5edfd427d60974d99b1',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/bbfb6192df62c5edfd427d60974d99b1/invoke.js"></script>
+    </div>
+
     <footer>
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="privacy-policy.html">Privacy Policy ကို ဖတ်ရှုရန်</a>
     </footer>
 
     <script>
