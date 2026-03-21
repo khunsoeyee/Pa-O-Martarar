@@ -1,0 +1,9 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "site.paomartarar.twa",
+        "sha256_cert_fingerprints": ["4B:D9:27:46:C4:D3:68:40:D6:7E:F9:8B:1B:AB:3B:77:27:0C:83:80:8F:0E:AA:06:19:47:87:45:00:3D:51:BD"]
+      }
+    }]
+
