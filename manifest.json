@@ -1,20 +1,23 @@
 {
-  "short_name": "မာႏတြာႏကျမ်ꩻ",
   "name": "မာႏတြာႏကျမ်ꩻ Digital Book",
+  "short_name": "မာႏတြာႏကျမ်ꩻ",
+  "description": "Digital version of Mar Twar Kyan book",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "page1.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpg",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon.png",
+      "src": "page1.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpg"
     }
-  ],
-  "start_url": "./index.html",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "theme_color": "#007bff"
+  ]
 }
