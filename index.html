@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-     <link rel="manifest" href="manifest.json">
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -99,7 +98,62 @@
             padding: 20px 0;
             margin-top: 10px;
         }
-        footer a { color: #007bff; text-decoration: none; font-weight: bold; border: 1px solid #007bff; padding: 5px 15px; border-radius: 5px; }
+
+        /* --- About Us Custom Modal Styling --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 350px;
+            text-align: center;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .modal-content.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #28a745;
+            font-size: 1.3rem;
+        }
+
+        .modal-content p {
+            line-height: 1.8;
+            color: #444;
+            font-size: 1rem;
+            white-space: pre-line;
+            margin: 15px 0;
+        }
+
+        .close-modal-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -133,24 +187,33 @@
         <script type="text/javascript" src="https://www.highperformanceformat.com/bbfb6192df62c5edfd427d60974d99b1/invoke.js"></script>
     </div>
 
-    <footer> <button onclick="showAboutUs()" style="margin-bottom: 10px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">
-  About us
-</button>
+    <footer> 
+        <button onclick="showAboutUs()" style="margin-bottom: 10px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">
+            About us
+        </button>
 
-<button onclick="window.open('https://khunsoeyee.blogspot.com/?m=1', '_blank')" style="margin-bottom: 10px; padding: 10px 20px; background-color: #ffc107; color: black; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;">
-  BLOG
-</button>
+        <button onclick="window.open('https://khunsoeyee.blogspot.com/?m=1', '_blank')" style="margin-bottom: 10px; padding: 10px 20px; background-color: #ffc107; color: black; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;">
+            BLOG
+        </button>
 
-<button onclick="location.href='privacy-policy.html'" style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">
-  Privacy Policy
-</button>
-
+        <button onclick="location.href='privacy-policy.html'" style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">
+            Privacy Policy
+        </button>
     </footer>
 
-    <script>function showAboutUs() {
-  alert("မင်္ဂလာႏဒျာႏဩ \nယိုနဝ်ꩻအနယ်ꩻ ၁၂စားဒျာႏသွူဩ \nခြပ်လိတ်တညီႏတဝ်းဖုံႏမိဉ်ႏပါဒါႏတဲ့ ခွင်ꩻလွစ်ဖေႏသွော့ ခွေသွဉ်းဩ \n\nကေားထွင်ႏသား = ခွန်စိုးရီ-ချို့ꩻထီ");
-}
-         
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content" id="modalBody">
+            <h3>မင်္ဂလာႏဒျာႏဩ</h3>
+            <p>ယိုနဝ်ꩻအနယ်ꩻ ၁၂စားဒျာႏသွူဩ
+            ခြပ်လိတ်တညီႏတဝ်းဖုံႏမိဉ်ႏပါဒါႏတဲ့ ခွင်ꩻလွစ်ဖေႏသွော့ ခွေသွဉ်းဩ
+
+            <strong>ကေားထွင်ႏသား</strong>
+            ခွန်စိုးရီ-ချို့ꩻထီ</p>
+            <button class="close-modal-btn" onclick="closeAboutUs()">ပိတ်မည်</button>
+        </div>
+    </div>
+
+    <script>
         const pages = [
             { 
                 img: "page1.jpg", 
@@ -198,7 +261,7 @@
             },
             { 
                 img: "page12.jpg", 
-                text: `၁၂။ လူꩻရွုတ်ယို အစူတပင်နဝ်ꩻ အဝ်ႏခွူမ်\nလိုꩻပေႏစူ အစူတပင်နဝ်ꩻ ခွူမ်တောမ်ႏငလာႏ\nမာꩻနုဲင်းအီႏတွဲႏလိုꩻပေႏသွူ ။\n\nလိုꩻပေႏနဝ်ꩻ လွူးဖွါꩻလင်ꩻ ထွူတဲင် မိဉ်ႏလꩻ\n၁၂နီꩻ၊ ၁၂လာ ၊ ၁၂နေင်ႏအကို မိဉ်ႏဆော့ဆာနဝ်ꩻ\nထဲစ်စွဉ်ႏပဋိသန္ဓေႏခါကာႏ ကအဝ်ႏအုံပွေါထွားတီဒါႏ\nစန္ဒိလူꩻသူꩻ ဆောမ်ꩻမော့ꩻအံႏတဲ့နော။\n\n၁၂။ ဆာပွုံႏလက္ခဏာႏ-\nနမ်းခွꩻခွꩻလျားလျားဒါႏသွူ ။\n\n၁၂။ လိုမ်ꩻလာꩻနယ်ꩻ -\nထူႏငလာႏ ဆꩻဗိုန်ပီဝန်ႏတောင်ꩻ တဲင်\nရဲဉ်ꩻသော့ꩻဒဲဉ်အထိုမ်ꩻတဆီ \nထောပတ် တခိုးနဝ်ꩻ လꩻသမျ အနွိုးအဆျာႏ\nသော့ꩻရော်ꩻယင်း ဖြစ်ꩻသော့ဟပသာႏ နံႏသာႏထီဟွမ်\nမေႏတိဉ်ꩻ တံႏခွဉ်ႏ တလီးစီႏ ရဲဉ်ꩻစွူမ်ႏထွူတဲင်\nလွေꩻပသာဖေႏ ဝွေꩻလွူးမွူးနီꩻနံႏ ဂျိုဟ်ႏကအုံအရပ်ကို\nနံႏကသင်ꩻဒါႏ သေင်ႏမွူးတမွူးမွူးထျꩻသူꩻနော။` 
+                text: `၁၂။ လူꩻရွုတ်ယို အစူတပင်နဝ်ꩻ အဝ်ႏခွူမ်\nလိုꩻပေႏစူ အစူတပင်နဝ်ꩻ ခွူမ်တောမ်ႏငလာႏ\nမာꩻနုဲင်းအီႏတွဲႏလိုꩻပေႏသွူ ။\n\nလိုꩻပေႏနဝ်ꩻ လွူးဖွါꩻလင်ꩻ ထွူတဲင် မိဉ်ႏလꩻ\n၁၂နီꩻ၊ ၁၂လာ ၊ ၁၂နေင်ႏအကို မိဉ်ႏဆော့ဆာနဝ်ꩻ\nထဲစ်စွဉ်ႏပဋိသန္ဓေႏခါကာႏ ကအဝ်ႏအုံပွေါထွားတီဒါႏ\nစန္ဒိလူꩻသူꩻ ဆောမ်ꩻမော့ꩻအံႏတဲ့နော။\n\n၁၂။ ဆာပွုံႏလက္ခဏာႏ-\nနမ်းခွꩻခွꩻလျားလျားဒါႏသွူ ။\n\n၁၂။ လိုမ်ꩻလာꩻနယ်ꩻ -\nထူႏငလာႏ ဆꩻဗိုန်ပီဝန်ႏတောင်ꩻ တဲင်\nရဲဉ်ꩻသော့ꩻဒဲဉ်အထိုမ်ꩻတဆီ \nထောပတ် တခိုးနဝ်ꩻ လꩻသမျ အနွိုးအဆျာႏ\nသော့ꩻရော်ꩻယင်း ဖြစ်ꩻသော့ဟပသာႏ နံႏသာႏထီဟွမ်\nမေႏတိဉ်ꩻ တံႏခွဉ်ႏ တလီးစီႏ ရဲဉ်ꩻစွူႏထွူတဲင်\nလွေꩻပသာဖေႏ ဝွေꩻလွူးမွူးနီꩻနံႏ ဂျိုဟ်ႏကအုံအရပ်ကို\nနံႏကသင်ꩻဒါႏ သေင်ႏမွူးတမွူးမွူးထျꩻသူꩻနော။` 
             },
         ];
 
@@ -244,6 +307,32 @@
             currentIndex += step;
             updatePage();
             window.scrollTo(0, 0);
+        }
+
+        // --- About Us Modal Logic ---
+        function showAboutUs() {
+            const modal = document.getElementById('aboutModal');
+            const content = document.getElementById('modalBody');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                content.classList.add('show');
+            }, 10);
+        }
+
+        function closeAboutUs() {
+            const modal = document.getElementById('aboutModal');
+            const content = document.getElementById('modalBody');
+            content.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('aboutModal');
+            if (event.target == modal) {
+                closeAboutUs();
+            }
         }
 
         // App Initial Load
